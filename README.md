@@ -1,6 +1,9 @@
 # android-fan-menu
 A custom ViewGroup in form of a fan menu. Reminds of the iOS Path menu.
 
+## Screenshots
+![Right positioned, closed](/screenshots/right_closed.png) ![Right positioned, open](/screenshots/right_open.png) ![Left positioned, open](/screenshots/left_open.png) ![Middle positioned, open](/screenshots/middle_open.png)
+
 ## Usage
 Add a dependency to your `build.gradle`:
 ```
