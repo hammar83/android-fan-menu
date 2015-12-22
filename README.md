@@ -79,7 +79,7 @@ Add the `me.hammarstrom.fanmenu.FanMenu` to your XML layout file:
 
     </me.hammarstrom.fanmenu.FanMenu>
 ```
-The first child view (preferably `android.support.design.widget.FloatingActionButton`) will act as the menu button, and the rest of them will act as menu items.
+The first child view (preferably `android.support.design.widget.FloatingActionButton`) will act as the menu button, and the rest of them will act as menu items. Use the XML attribute `app:menu_position` to position the menu (left, right or middle).
 
 ## License
 ```
