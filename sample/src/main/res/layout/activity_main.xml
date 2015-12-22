@@ -8,10 +8,9 @@
     <me.hammarstrom.fanmenu.FanMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:background="#10000000"
-        app:menu_position="right">
+        app:menu_position="middle">
 
         <!--
         // Will act as the menu button

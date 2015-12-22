@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'fanmenu'
+
+    publishedGroupId = 'me.hammarstrom.fanmenu'
+    libraryName = 'fanmenu'
+    artifact = 'fanmenu'
+
+    libraryDescription = 'A custom ViewGroup to create a fan menu in Android'
+
+    siteUrl = 'https://github.com/hammar83/android-fan-menu'
+    gitUrl = 'https://github.com/hammar83/android-fan-menu.git'
+
+    libraryVersion = '1.0'
+
+    developerId = 'hammar83'
+    developerName = 'Fredrik Hammarström'
+    developerEmail = 'hammar83@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -23,3 +47,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 }
+
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
