@@ -1,5 +1,5 @@
 # android-fan-menu
-A custom ViewGroup in form of a fan menu. Reminds of the iOS Path menu.
+A custom ViewGroup in form of a menu that expands the menu items in a circular way. The menu can be placed to right, to left and in the middle.
 
 [ ![Download](https://api.bintray.com/packages/hammar83/maven/fanmenu/images/download.svg) ](https://bintray.com/hammar83/maven/fanmenu/_latestVersion)
 
