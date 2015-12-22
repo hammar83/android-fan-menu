@@ -15,6 +15,8 @@
  */
 package me.hammarstrom.fanmenu;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PointF;
@@ -22,13 +24,16 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.RemoteViews;
 
 /**
@@ -131,9 +136,9 @@ public class FanMenu extends ViewGroup {
 
         for(int i = 1; i < getChildCount(); i++) {
             final View child = getChildAt(i);
-            if(child.getVisibility() != GONE) {
+//            if(child.getVisibility() != GONE) {
                 measureChild(child, widthMeasureSpec, heightMeasureSpec);
-            }
+//            }
         }
 
         setMeasuredDimension(
@@ -197,9 +202,9 @@ public class FanMenu extends ViewGroup {
         // Place menu items
         for (int i = 1; i < getChildCount(); i++) {
             final View child = getChildAt(i);
-            if(child.getVisibility() == GONE) {
-                continue;
-            }
+//            if(child.getVisibility() == GONE) {
+//                continue;
+//            }
 
             PointF childPosition = getChildCenterPosition(angleDegrees, radius);
             child.layout(
@@ -234,16 +239,23 @@ public class FanMenu extends ViewGroup {
     private void showItemsAnimation(final View item) {
         item.setVisibility(VISIBLE);
 
-        Animation alpha = new AlphaAnimation(0.0f, 1.0f);
-        alpha.setDuration(200);
+        float fromX = mMenuButton.getX() - item.getX();
+        float toX = 0f;
+        float fromY = mMenuButton.getY() - item.getY();
+        float toY = 0f;
 
-        Animation scale = new ScaleAnimation(0.5f, 1.0f, 0.5f, 1.0f);
-        scale.setDuration(200);
-        scale.setInterpolator(new OvershootInterpolator());
+        Animation translate = new TranslateAnimation(fromX, toX, fromY, toY);
+        translate.setDuration(300);
+        translate.setInterpolator(new OvershootInterpolator());
+        translate.setFillAfter(true);
+        translate.setFillEnabled(true);
+
+        Animation alpha = new AlphaAnimation(0.4f, 1.0f);
+        alpha.setDuration(300);
 
         AnimationSet animationSet = new AnimationSet(false);
+        animationSet.addAnimation(translate);
         animationSet.addAnimation(alpha);
-        animationSet.addAnimation(scale);
         item.startAnimation(animationSet);
     }
 
@@ -253,16 +265,24 @@ public class FanMenu extends ViewGroup {
      * @param item
      */
     private void hideItemsAnimation(final View item) {
-        Animation alpha = new AlphaAnimation(1.0f, 0.0f);
-        alpha.setDuration(200);
 
-        Animation scale = new ScaleAnimation(1.0f, 0.5f, 1.0f, 0.5f);
-        scale.setDuration(200);
-        scale.setInterpolator(new AccelerateInterpolator());
+        float toX = mMenuButton.getX() - item.getX();
+        float fromX = 0f;
+        float toY = mMenuButton.getY() - item.getY();
+        float fromY = 0f;
+
+        Animation translate = new TranslateAnimation(fromX, toX, fromY, toY);
+        translate.setDuration(300);
+        translate.setInterpolator(new AccelerateInterpolator());
+        translate.setFillAfter(true);
+        translate.setFillEnabled(true);
+
+        Animation alpha = new AlphaAnimation(1.0f, 0.0f);
+        alpha.setDuration(250);
 
         AnimationSet animationSet = new AnimationSet(false);
+        animationSet.addAnimation(translate);
         animationSet.addAnimation(alpha);
-        animationSet.addAnimation(scale);
         item.startAnimation(animationSet);
 
         animationSet.setAnimationListener(new Animation.AnimationListener() {
