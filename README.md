@@ -4,7 +4,7 @@ A custom ViewGroup in form of a fan menu. Reminds of the iOS Path menu.
 [ ![Download](https://api.bintray.com/packages/hammar83/maven/fanmenu/images/download.svg) ](https://bintray.com/hammar83/maven/fanmenu/_latestVersion)
 
 ## Screenshots
-![Right positioned, closed](/screenshots/right_closed.png) ![Right positioned, open](/screenshots/right_open.png) ![Left positioned, open](/screenshots/left_open.png) ![Middle positioned, open](/screenshots/middle_open.png)
+![Right positioned, closed](/screenshots/right_closed.png) ![Right positioned, open](/screenshots/right_open.png) ![Left positioned, open](/screenshots/left_open.png) ![Middle positioned, open](/screenshots/middle_open.png) ![Contacts, open](/screenshots/contacts_open.png)
 
 ## Usage
 Add a dependency to your `build.gradle`:
@@ -79,7 +79,7 @@ Add the `me.hammarstrom.fanmenu.FanMenu` to your XML layout file:
 
     </me.hammarstrom.fanmenu.FanMenu>
 ```
-The first child view (preferably `android.support.design.widget.FloatingActionButton`) will act as the menu button, and the rest of them will act as menu items. Use the XML attribute `app:menu_position` to position the menu (left, right or middle).
+The first child view will act as the menu button, and the rest of them will act as menu items. Use the XML attribute `app:menu_position` to position the menu (left, right or middle). 
 
 ## License
 ```
