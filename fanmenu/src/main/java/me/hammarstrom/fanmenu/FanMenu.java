@@ -53,6 +53,7 @@ public class FanMenu extends ViewGroup {
     private int mPadding;
     private int mMenuPosition;
     private boolean mMenuOpen = false;
+    private boolean mShowMenuButtonAnimation;
 
     private View mMenuButton;
     private PointF circleCenter;
@@ -72,6 +73,7 @@ public class FanMenu extends ViewGroup {
 
         try {
             mMenuPosition = a.getInteger(R.styleable.FanMenu_menu_position, RIGHT);
+            mShowMenuButtonAnimation = a.getBoolean(R.styleable.FanMenu_default_button_animation, true);
         } finally {
             a.recycle();
         }
@@ -101,14 +103,20 @@ public class FanMenu extends ViewGroup {
      */
     private void toggleMenuItems() {
         if (!mMenuOpen) {
-            mMenuButton.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.menu_button_rotate_open));
+            if(mShowMenuButtonAnimation) {
+                mMenuButton.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.menu_button_rotate_open));
+            }
+
             for(int i = 1; i < getChildCount(); i++) {
                 final View item = getChildAt(i);
                 showItemsAnimation(item);
             }
 
         } else {
-            mMenuButton.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.menu_button_rotate_close));
+            if(mShowMenuButtonAnimation) {
+                mMenuButton.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.menu_button_rotate_close));
+            }
+
             for(int i = 1; i < getChildCount(); i++) {
                 final View item = getChildAt(i);
                 hideItemsAnimation(item);
@@ -136,9 +144,7 @@ public class FanMenu extends ViewGroup {
 
         for(int i = 1; i < getChildCount(); i++) {
             final View child = getChildAt(i);
-//            if(child.getVisibility() != GONE) {
-                measureChild(child, widthMeasureSpec, heightMeasureSpec);
-//            }
+            measureChild(child, widthMeasureSpec, heightMeasureSpec);
         }
 
         setMeasuredDimension(
@@ -202,10 +208,6 @@ public class FanMenu extends ViewGroup {
         // Place menu items
         for (int i = 1; i < getChildCount(); i++) {
             final View child = getChildAt(i);
-//            if(child.getVisibility() == GONE) {
-//                continue;
-//            }
-
             PointF childPosition = getChildCenterPosition(angleDegrees, radius);
             child.layout(
                     (int) childPosition.x - (child.getMeasuredWidth() / 2),
@@ -250,7 +252,7 @@ public class FanMenu extends ViewGroup {
         translate.setFillAfter(true);
         translate.setFillEnabled(true);
 
-        Animation alpha = new AlphaAnimation(0.4f, 1.0f);
+        Animation alpha = new AlphaAnimation(0.0f, 1.0f);
         alpha.setDuration(300);
 
         AnimationSet animationSet = new AnimationSet(false);

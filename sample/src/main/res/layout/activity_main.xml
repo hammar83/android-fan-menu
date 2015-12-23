@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        app:menu_position="right">
+        app:menu_position="right"
+        app:default_button_animation="true">
 
         <!--
         // Will act as the menu button

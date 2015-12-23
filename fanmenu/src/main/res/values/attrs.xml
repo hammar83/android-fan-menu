@@ -6,5 +6,6 @@
             <enum name="left" value="1" />
             <enum name="right" value="2" />
         </attr>
+        <attr name="default_button_animation" format="boolean" />
     </declare-styleable>
 </resources>
